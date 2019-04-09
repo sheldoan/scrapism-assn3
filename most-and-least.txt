@@ -1,0 +1,24 @@
+===Most Similar===
+big_images/24JANG-mediumThreeByTwo378-v2.jpg 0.4542913406311876
+big_images/22YI-threeByTwoSmallAt2X.jpg 0.5095403631263673
+big_images/16UY-mediumThreeByTwo378-v2.jpg 0.5143747039865393
+big_images/17WANG-mediumThreeByTwo378-v2.jpg 0.5179986865661884
+big_images/11MCMURRAY-mediumThreeByTwo378.jpg 0.5274551750843621
+big_images/20CHEN-threeByTwoSmallAt2X.jpg 0.535763608478988
+big_images/20JIN-threeByTwoSmallAt2X.jpg 0.5402288502139405
+big_images/03TONG-mediumThreeByTwo378.jpg 0.547836495772378
+big_images/07MO-mediumThreeByTwo378-v2.jpg 0.5633773501499318
+big_images/27LEONG-threeByTwoSmallAt2X.jpg 0.5639273528589107
+
+
+===Least Similar===
+big_images/21KER-mediumThreeByTwo378-v2.jpg 1.0386885283774363
+big_images/27MCDONOUGH-mediumThreeByTwo378.jpg 1.0409101410980286
+big_images/24WARD-threeByTwoSmallAt2X.jpg 1.0473341296670777
+big_images/01WILFONG-mediumThreeByTwo378-v2.jpg 1.0474397831173146
+big_images/16MCGRATH-threeByTwoSmallAt2X.jpg 1.0494341658919921
+big_images/20DONG-threeByTwoSmallAt2X.jpg 1.0499452413150672
+big_images/22DANDAVATE-mediumThreeByTwo378-v2.jpg 1.0545643770044513
+big_images/07KADAR-threeByTwoSmallAt2X.jpg 1.0597351508595505
+big_images/24BALDWIN-mediumThreeByTwo378.jpg 1.0683026540079084
+big_images/07ERVIN-mediumThreeByTwo378.jpg 1.1290575214705123
