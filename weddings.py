@@ -1,9 +1,19 @@
 import requests
 import json
 import time
+import csv
 
-cursor = "YXJyYXljb25uZWN0aW9uOjE1OQ"
+csv_file = open('data.csv', mode='w')
+csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+csv_writer.writerow(['headline', 'url', 'date', 'summary', 'thumb_image_url', 'big_image_url'])
+error_file = open('json_on_error.html', 'w')
 
+#cursor = "YXJyYXljb25uZWN0aW9uOjE1OQ"
+#cursor = "YXJyYXljb25uZWN0aW9uOjE1MjU=" # after 1520 scanned
+cursor = "YXJyYXljb25uZWN0aW9uOjU2NQ" #after 560 scanned
+
+num_stories = 0
+num_stories_without_images = 0
 while True:
     headers = {
         'Origin': 'https://www.nytimes.com',
@@ -21,9 +31,50 @@ while True:
 
     response = requests.post('https://samizdat-graphql.nytimes.com/graphql/v2', headers=headers, data=data)
     full_resp = json.loads(response.text)
-    wedding_stories = full_resp['data']['legacyCollection']['stream']['edges']
+    try:
+        wedding_stories = full_resp['data']['legacyCollection']['stream']['edges']
+    except TypeError:
+        error_file.write(response.text)
+        print("Type error! Going to retry cursor ", cursor);
+        continue
+        sleep(1)
+
+
     for story in wedding_stories:
-        print(story['node']['headline']['default'])
+        story_headline = story['node']['headline']['default']
+        story_url = story['node']['url']
+        story_date = story['node']['firstPublished']
+        story_summary = story['node']['summary']
+        headline_parts = story_headline.split(",")
+
+        is_couple = False
+        if len(headline_parts) == 2:
+            if len(headline_parts[0].split(" ")) <= 3 and len(headline_parts[1].strip().split(" ")) <= 3:
+                is_couple = True
+        # print(story_headline) if is_couple else print(">>> Not couple: ", story_headline)
+        num_stories += 1
+
+        if not is_couple:
+            continue
+
+        try:
+            renditions = story['node']['promotionalMedia']['crops'][0]['renditions']
+            thumb_url = renditions[0]['url']
+            image_url = renditions[-1]['url']
+            csv_writer.writerow([story_headline, story_url, story_date, story_summary, thumb_url, image_url])
+            # print(image_url)
+        except TypeError:
+            #print("***", story_summary, " has no image. ", num_stories_without_images, "/", num_stories)
+            num_stories_without_images += 1
+            pass
+
+        if num_stories % 20 == 0:
+            print (cursor, "...", num_stories, " scanned, ", num_stories_without_images, " without images")
+
 
     cursor = full_resp['data']['legacyCollection']['stream']['pageInfo']['endCursor']
-    time.sleep(0.5)
+    if not full_resp['data']['legacyCollection']['stream']['pageInfo']['hasNextPage']:
+        print ("There is no next page!! ")
+        break
+
+    time.sleep(1)
