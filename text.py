@@ -12,16 +12,27 @@ for row in csv_reader:
 
 wedding_keys = set()
 first_name_list = []
+first_name_map = {}
 for wedding in weddings:
     if wedding['url'] in wedding_keys:
-        print ("Skipping repeat ", wedding['names'])
+        #print ("Skipping repeat ", wedding['names'])
         continue
 
     names = wedding['names'].split(',')
-    first_names = names[0].split(" ")[0] + " and " + names[1].strip().split(" ")[0]
+    name1 = names[0].strip().split(" ")[0];
+    name2 = names[1].strip().split(" ")[0]
+    first_names = name1 + " and " + name2
     first_name_list.append(first_names)
-    print (first_names)
+    # print (first_names)
+
+    if name1 in first_name_map:
+        first_name_map[name1].append(name2)
+    else:
+        first_name_map[name1] = [name2]
 
     summary = wedding['summary']
     wedding_keys.add(wedding['url'])
     #print (summary.split('.')[0])
+
+for name1 in sorted(first_name_map.keys()):
+    print (name1, "and",", ".join(first_name_map[name1]))
