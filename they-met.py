@@ -67,14 +67,16 @@ for suitor in suitor_list:
     if not suitor['summary'].startswith("The couple met"):
         continue
     print (line_to_print)
-    prefix = "When that ended, " + subject_pronoun + " met "
+    prefix = subject_pronoun.title() + " met "
     if suitor_count == 0:
         prefix = subject + " met "
-    line_to_print = prefix + suitor['name'] + suitor['summary'][len("The couple met"):]
+    line_to_print = prefix + suitor['name'] + " (" + suitor['summary'][len("The couple met")+1:-1] + ")"
     suitor_count += 1
 
 if suitor_count < 2:
     print (line_to_print)
 else:
     prefix = "And finally, " + subject + " met "
-    print (prefix + line_to_print[len("When that ended, " + subject_pronoun + " met "):])
+    suffix = line_to_print[len(subject_pronoun.title() + " met "):]
+    suffix = re.sub('[()]','', suffix)
+    print (prefix + suffix)
