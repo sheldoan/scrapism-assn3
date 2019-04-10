@@ -38,19 +38,21 @@ This led to creating a script `they-met.py` which takes an input name and gender
 Here's some sample output:
 
 ```
-$ python they-met.py Alexander 0
+$ python they-met.py Stephanie 0
 
-Alexander met Leah (through the dating website OkCupid)
-He met Michelle (in Manhattan through a mutual friend)
-He met Chloe (on the app Coffee Meets Bagel in New York)
-He met Shweta (at a rock climbing event in Trier, Germany)
-He met Johanna (as undergraduates at Wake Forest University)
-He met Jessica (in October through the dating app the League)
-He met Brooke (over Independence Day weekend at a vineyard in Sonoma, Calif)
-He met Katina (at George Washington University, from which they both graduated)
-He met Elise (in New York on a blind date set up by a mutual friend in February)
-He met Mallory (at Columbia, from which they graduated, the groom summa cum laude)
-He met Martha (in October at a club in San Francisco where a mutual friend was the D.J)
-He met Neha (at Princeton, from which they graduated, she cum laude and he summa cum laude)
-And finally, Alexander met Jessica in Boston, where they were both working on projects involving military veterans
+Stephanie met Kyle (on OkCupid, the dating website)
+She met Chad (at Loyola University in Chicago)
+She met Joseph (at Duke University Hospital in Durham)
+She met Jeffrey ( on a blind date arranged by a mutual friend)
+She met John (in September through a mutual friend in New York)
+She met Calgary (at Bell, Book & Candle, a restaurant in New York)
+She met Jared (while working as lawyers at a Manhattan law firm)
+She met Andrew (through their younger sisters, who were college friends)
+She met Thomas (in July while working on a project for Accenture Strategy)
+She met James (through mutual friends, who planned a party to introduce them)
+She met Joel (in Chicago, as high-school students at Walter Payton College Prep)
+She met Jared (while the bride was interviewing for a job at a school in Brooklyn)
+She met Stanley (on the way to the Matzoball, a Christmas Eve event for Jewish singles)
+She met Stephen (in Washington when both worked for the Democratic Congressional Campaign Committee)
+And finally, Stephanie met Azi through the dating app Bumble, and had Belgian waffles for their first date, while sitting by the fountain at Lincoln Center
 ```
