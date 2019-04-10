@@ -9,6 +9,7 @@ csv_file = open('data.csv')
 csv_reader = csv.reader(csv_file, delimiter=',')
 
 subject = sys.argv[1]
+gender = int(sys.argv[2]) # 0 for female, 1 for male
 
 weddings = []
 count = 0
@@ -29,29 +30,43 @@ for wedding in weddings:
     name1 = names[0].strip().split(" ")[0];
     name2 = names[1].strip().split(" ")[0]
 
+    if not subject.lower() in [name1.lower(), name2.lower()]:
+        continue
+
     summary = wedding['summary']
     doc = nlp(summary)
     sents = list(doc.sents)
+
+    subject_name = name1
+    suitor_name = name2
+    if gender == 1:
+        subject_name = name2
+        suitor_name = name1
+
     if len(sents) > 0:
         first_sentence = sents[0].text
         year_index = first_sentence.find("in 20")
         filtered_summary = re.sub(r' in 20[0-9][0-9]', "", first_sentence)
         filtered_summary = re.sub(r' 20[0-9][0-9]', "", filtered_summary)
-        suitor_data = { 'name': name2, 'summary' :  filtered_summary}
-        if name1 in first_name_map:
-            first_name_map[name1].append(suitor_data)
+        suitor_data = { 'name': suitor_name, 'summary' :  filtered_summary}
+        if subject_name in first_name_map:
+            first_name_map[subject_name].append(suitor_data)
         else:
-            first_name_map[name1] = [suitor_data]
+            first_name_map[subject_name] = [suitor_data]
     wedding_keys.add(wedding['url'])
 
 suitor_list = sorted(first_name_map[subject], key=lambda i : len(i['summary']))
 suitor_count = 0
 
+subject_pronoun = "she"
+if gender == 1:
+    subject_pronoun = "he"
+
 for suitor in suitor_list:
     if not suitor['summary'].startswith("The couple met"):
         continue
 
-    prefix = "When that ended she met "
+    prefix = "When that ended, " + subject_pronoun + " met "
     if suitor_count == 0:
         prefix = subject + " met "
     #print (suitor['summary'])
