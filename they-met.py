@@ -56,19 +56,25 @@ for wedding in weddings:
     wedding_keys.add(wedding['url'])
 
 suitor_list = sorted(first_name_map[subject], key=lambda i : len(i['summary']))
-suitor_count = 0
 
 subject_pronoun = "she"
 if gender == 1:
     subject_pronoun = "he"
 
+suitor_count = 0
+line_to_print = ""
 for suitor in suitor_list:
     if not suitor['summary'].startswith("The couple met"):
         continue
-
+    print (line_to_print)
     prefix = "When that ended, " + subject_pronoun + " met "
     if suitor_count == 0:
         prefix = subject + " met "
-    #print (suitor['summary'])
-    print (prefix + suitor['name'] + suitor['summary'][len("The couple met"):])
+    line_to_print = prefix + suitor['name'] + suitor['summary'][len("The couple met"):]
     suitor_count += 1
+
+if suitor_count < 2:
+    print (line_to_print)
+else:
+    prefix = "After all that, " + subject + " met "
+    print (prefix + line_to_print[len("When that ended, " + subject_pronoun + " met "):])
