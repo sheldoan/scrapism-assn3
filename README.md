@@ -17,7 +17,7 @@ You can also search by name. Here are all the Stephanies:
 
 ## facial similarity ##
 
-I tried using the [face_recognition](https://github.com/ageitgey/face_recognition) library to find couples with very similar faces. These were the results for most similar:
+I tried using the [face_recognition](https://github.com/ageitgey/face_recognition) library to find couples with very similar faces (see `face_similarity.py`). These were the results for most similar:
 
 ![alt text](https://drive.google.com/uc?export=view&id=17eq7AfZoAtVPIhpmsJNDGkypOPk27OGL)
 
