@@ -18,5 +18,7 @@ function search(elem) {
           displayObject.appendChild(coupleImage)
         }
       }
+      var resultCount = document.getElementById("resultCount").childNodes[1].innerHTML =
+        "Showing " + results.length + " of " + data.length + " marriages"
   }
 }
