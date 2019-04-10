@@ -1,6 +1,7 @@
 import csv
 import sys
 import spacy
+import re
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -34,9 +35,8 @@ for wedding in weddings:
     if len(sents) > 0:
         first_sentence = sents[0].text
         year_index = first_sentence.find("in 20")
-        filtered_summary = first_sentence
-        if year_index > 0:
-            filtered_summary = first_sentence[:year_index - 1] + first_sentence[year_index + 7:]
+        filtered_summary = re.sub(r' in 20[0-9][0-9]', "", first_sentence)
+        filtered_summary = re.sub(r' 20[0-9][0-9]', "", filtered_summary)
         suitor_data = { 'name': name2, 'summary' :  filtered_summary}
         if name1 in first_name_map:
             first_name_map[name1].append(suitor_data)
@@ -51,7 +51,7 @@ for suitor in suitor_list:
     if not suitor['summary'].startswith("The couple met"):
         continue
 
-    prefix = "That ended when she met "
+    prefix = "When that ended she met "
     if suitor_count == 0:
         prefix = subject + " met "
     #print (suitor['summary'])
