@@ -76,5 +76,5 @@ for suitor in suitor_list:
 if suitor_count < 2:
     print (line_to_print)
 else:
-    prefix = "After all that, " + subject + " met "
+    prefix = "And finally, " + subject + " met "
     print (prefix + line_to_print[len("When that ended, " + subject_pronoun + " met "):])
