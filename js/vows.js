@@ -7,7 +7,8 @@ function search(elem) {
       var results = []
       for (var i = 0; i < data.length; i++) {
         var summary = data[i]['summary']
-        if (summary.toLowerCase().includes(search.toLowerCase())) {
+        var names = data[i]['headline']
+        if (summary.toLowerCase().includes(search.toLowerCase()) || names.toLowerCase().includes(search.toLowerCase())) {
           console.log(data[i]['thumb_image_url'])
           results.push(data[i])
 
